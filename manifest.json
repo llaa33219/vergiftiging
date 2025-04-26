@@ -1,0 +1,34 @@
+{
+  "manifest_version": 3,
+  "name": "엔트리-중독방지",
+  "version": "1.0",
+  "description": "엔트리 이야기 중독을 막아줍니다.",
+  "permissions": [
+    "storage"
+  ],
+  "host_permissions": [
+    "https://playentry.org/*"
+  ],
+  "action": {
+    "default_popup": "popup.html"
+  },
+  "content_scripts": [
+    {
+      "matches": [
+        "https://playentry.org/*"
+      ],
+      "js": [
+        "content.js"
+      ],
+      "run_at": "document_idle"
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  },
+  "icons": {
+    "16": "icon16.png",
+    "48": "icon48.png",
+    "128": "icon128.png"
+  }
+}
