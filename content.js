@@ -82,24 +82,24 @@
     // 리스트 페이지 체류 시간 기록
     if (
       window.location.href.startsWith(
-        'https://playentry.org/community/entrystory/list'
+      'https://playentry.org/community/entrystory'
       )
     ) {
       timeSpentMs += 500;
       try {
-        // 시간 저장
-        chrome.storage.sync.set({ timeSpentMs });
+      // 시간 저장
+      chrome.storage.sync.set({ timeSpentMs });
       } catch (e) {
-        clearInterval(intervalId);
-        return;
+      clearInterval(intervalId);
+      return;
       }
     }
 
     updateOverlays();
-  }, 500);
+    }, 500);
 
-  // 오버레이 업데이트 함수
-  function updateOverlays() {
+    // 오버레이 업데이트 함수
+    function updateOverlays() {
     const totalSec = Math.floor(timeSpentMs / 1000);
     const minutes = Math.floor(totalSec / 60);
     const seconds = totalSec % 60;
@@ -107,10 +107,10 @@
     // 리스트 페이지에서 언제든 시간 오버레이 표시
     if (
       window.location.href.startsWith(
-        'https://playentry.org/community/entrystory/list'
+      'https://playentry.org/community/entrystory'
       )
     ) {
-      document.querySelectorAll('div.css-v98ur4.eq36rvw4').forEach(el => {
+      document.querySelectorAll('div.css-v98ur4.eq36rvw4, div.css-1eth5pr.e1yi8oq65').forEach(el => {
         el.innerHTML =
           `<span style="font-size:1.8em;">당신은 오늘 </span> ` +
           `<span style="color:rgb(22,216,163);font-size:2.3em;font-weight:600;">${minutes}분 ${seconds}초</span> ` +
